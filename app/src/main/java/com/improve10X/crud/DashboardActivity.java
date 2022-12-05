@@ -4,8 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.improve10X.crud.messages.MessagesActivity;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class DashboardActivity extends AppCompatActivity {
     private void handleImageButton() {
         ImageButton messagesButton = findViewById(R.id.messages_img);
         messagesButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this,MessagesActivity.class);
+            Intent intent = new Intent(this, MessagesActivity.class);
             startActivity(intent);
         });
     }

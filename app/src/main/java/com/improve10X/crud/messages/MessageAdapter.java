@@ -1,4 +1,4 @@
-package com.improve10X.crud;
+package com.improve10X.crud.messages;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,14 +7,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.improve10X.crud.R;
+
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
+    OnItemActionListener onItemActionListener;
+    public void setOnItemActionListener(OnItemActionListener listener) {
+        onItemActionListener = listener;
+    }
 
-    public ArrayList<Message> messages;
+    public List<Message> messages;
 
-    public void setData(ArrayList<Message> messageArrayList) {
+    public void setData(List<Message> messageArrayList) {
         messages = messageArrayList;
         notifyDataSetChanged();
     }
@@ -34,6 +39,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
         holder.nameText.setText(message.name);
         holder.numberText.setText(message.number);
         holder.messageText.setText(message.message);
+        holder.deleteBtn.setOnClickListener(view -> {
+            onItemActionListener.onItemDelete(message);
+        });
+        holder.itemView.setOnClickListener(view -> {
+            onItemActionListener.onItemClicked(message);
+        });
 
     }
 
