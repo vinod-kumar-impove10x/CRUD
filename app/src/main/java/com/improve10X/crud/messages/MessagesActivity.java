@@ -60,7 +60,7 @@ public class MessagesActivity extends AppCompatActivity {
 
     private void fetchMessages() {
         MessagesApi messagesApi = new MessagesApi();
-        Call<List<Message>> call = messagesApi.createMessagesService().fetchTasks();
+        Call<List<Message>> call = messagesApi.createMessagesService().fetchMessages();
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {

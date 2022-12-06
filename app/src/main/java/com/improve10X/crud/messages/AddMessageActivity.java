@@ -45,7 +45,7 @@ public class AddMessageActivity extends AppCompatActivity {
 
         MessagesApi messagesApi = new MessagesApi();
         MessagesService messagesService = messagesApi.createMessagesService();
-        Call<Message> call = messagesService.createTasks(message);
+        Call<Message> call = messagesService.createMessage(message);
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
