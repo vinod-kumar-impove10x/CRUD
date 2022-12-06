@@ -29,6 +29,8 @@ public class AddTemplateActivity extends AppCompatActivity {
     }
 
     private void createTemplate(String messageText) {
+        Template template = new Template();
+        template.messageText = messageText;
 
     }
 }

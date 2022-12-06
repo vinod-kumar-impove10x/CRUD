@@ -22,16 +22,16 @@ public class MessagesActivity extends AppCompatActivity {
 
     public ArrayList<Message> messages;
     public RecyclerView messagesRv;
-    public MessagesAdapter messageAdapter;
+    public MessagesAdapter messagesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
         getSupportActionBar().setTitle("Messages");
-        handleAddButton();
-        setupDta();
-        setupMessagesItemsRv();
+        handleAdd();
+        setupData();
+        setupMessagesRv();
     }
 
     public void deleteMessage(Message message) {
@@ -42,15 +42,12 @@ public class MessagesActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(MessagesActivity.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
-                fetchData();
-
+                fetchMessages();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(MessagesActivity.this, "Failed to delete", Toast.LENGTH_SHORT).show();
-
-
             }
         });
     }
@@ -58,17 +55,17 @@ public class MessagesActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        fetchData();
+        fetchMessages();
     }
 
-    private void fetchData() {
+    private void fetchMessages() {
         MessagesApi messagesApi = new MessagesApi();
         Call<List<Message>> call = messagesApi.createMessagesService().fetchTasks();
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 List<Message> messages = response.body();
-                messageAdapter.setData(messages);
+                messagesAdapter.setData(messages);
 
             }
 
@@ -79,13 +76,13 @@ public class MessagesActivity extends AppCompatActivity {
         });
     }
 
-    private void setupMessagesItemsRv() {
+    private void setupMessagesRv() {
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
-        messageAdapter = new MessagesAdapter();
-        messageAdapter.setData(messages);
-        messagesRv.setAdapter(messageAdapter);
-        messageAdapter.setOnItemActionListener(new OnItemActionListener() {
+        messagesAdapter = new MessagesAdapter();
+        messagesAdapter.setData(messages);
+        messagesRv.setAdapter(messagesAdapter);
+        messagesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onItemClicked(Message message) {
                 Toast.makeText(MessagesActivity.this, "onItemClicked", Toast.LENGTH_SHORT).show();
@@ -104,15 +101,13 @@ public class MessagesActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
-    private void setupDta() {
+    private void setupData() {
             messages = new ArrayList<>();
     }
 
-    private void handleAddButton() {
+    private void handleAdd() {
         Button addBtn = findViewById(R.id.add_btn);
         addBtn.setOnClickListener(view -> {
             Intent intent = new Intent(this, AddMessageActivity.class);
