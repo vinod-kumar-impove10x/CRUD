@@ -20,10 +20,10 @@ public class AddMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_message);
         getSupportActionBar().setTitle("Add Message");
-        handleBtn();
+        handleAdd();
     }
 
-    private void handleBtn() {
+    private void handleAdd() {
         Button addBtn = findViewById(R.id.add_btn);
         addBtn.setOnClickListener(view -> {
             EditText nameTextTxt = findViewById(R.id.name_txt);
@@ -33,7 +33,6 @@ public class AddMessageActivity extends AppCompatActivity {
             EditText messageTextTxt = findViewById(R.id.message_txt);
             String messageText = messageTextTxt.getText().toString();
             createMessage(nameText,phoneText,messageText);
-
         });
     }
 
