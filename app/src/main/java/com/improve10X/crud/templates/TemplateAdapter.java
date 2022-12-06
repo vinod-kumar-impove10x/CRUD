@@ -8,17 +8,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.improve10X.crud.R;
-import com.improve10X.crud.messages.Message;
-import com.improve10X.crud.messages.MessageViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
+   OnItemActionListener onItemActionListener;
 
-    public ArrayList<Template> templates;
 
-    public void setData(ArrayList<Template> templatesList) {
+    public void setOnItemActionListener(OnItemActionListener listener) {
+        onItemActionListener = listener;
+    }
+
+    public List<Template> templates;
+
+    public void setData(List<Template> templatesList) {
         templates = templatesList;
         notifyDataSetChanged();
     }
@@ -34,6 +38,12 @@ public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
     public void onBindViewHolder(@NonNull TemplateViewHolder holder, int position) {
         Template template = templates.get(position);
         holder.messageTextTxt.setText(template.messageText);
+        holder.deleteBtn.setOnClickListener(view -> {
+            onItemActionListener.onItemDelete(template);
+        });
+        holder.itemView.setOnClickListener(view -> {
+            onItemActionListener.onItemClicked(template);
+        });
     }
 
     @Override
