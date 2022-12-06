@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.improve10X.crud">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CRUD"
         tools:targetApi="31">
+        <activity
+            android:name=".templates.AddTemplateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".templates.TemplatesActivity"
+            android:exported="false" />
         <activity
             android:name=".messages.AddMessageActivity"
             android:exported="false" />

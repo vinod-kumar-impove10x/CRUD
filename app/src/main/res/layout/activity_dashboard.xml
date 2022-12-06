@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".DashboardActivity">
@@ -20,6 +20,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Messages"
+        android:textAlignment="center"
+        android:textColor="#100F0F"
+        android:textSize="24sp" />
+
+    <ImageButton
+        android:id="@+id/templates_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Templates"
         android:textAlignment="center"
         android:textColor="#100F0F"
         android:textSize="24sp" />

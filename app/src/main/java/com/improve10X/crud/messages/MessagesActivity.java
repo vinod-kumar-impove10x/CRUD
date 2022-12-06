@@ -22,7 +22,7 @@ public class MessagesActivity extends AppCompatActivity {
 
     public ArrayList<Message> messages;
     public RecyclerView messagesRv;
-    public MessageAdapter messageAdapter;
+    public MessagesAdapter messageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class MessagesActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Messages");
         handleAddButton();
         setupDta();
-        setupMessages();
+        setupMessagesItemsRv();
     }
 
     public void deleteMessage(Message message) {
@@ -79,10 +79,10 @@ public class MessagesActivity extends AppCompatActivity {
         });
     }
 
-    private void setupMessages() {
+    private void setupMessagesItemsRv() {
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
-        messageAdapter = new MessageAdapter();
+        messageAdapter = new MessagesAdapter();
         messageAdapter.setData(messages);
         messagesRv.setAdapter(messageAdapter);
         messageAdapter.setOnItemActionListener(new OnItemActionListener() {
