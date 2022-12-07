@@ -4,12 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/activity_add_message.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/activity_add_series_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/activity_add_template.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/activity_dashboard.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/activity_messages.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/activity_series_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/activity_templates.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/messages_item.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/series_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/templates.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/CRUD/app/src/main/res/layout/templates_item.xml" value="0.20416666666666666" />
       </map>

@@ -22,7 +22,7 @@
         android:text="Messages"
         android:textAlignment="center"
         android:textColor="#100F0F"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <ImageButton
         android:id="@+id/templates_img"
@@ -37,5 +37,20 @@
         android:text="Templates"
         android:textAlignment="center"
         android:textColor="#100F0F"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/series_imgbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Series"
+        android:textAlignment="center"
+        android:textColor="#070707"
+        android:textSize="20sp" />
 </LinearLayout>
