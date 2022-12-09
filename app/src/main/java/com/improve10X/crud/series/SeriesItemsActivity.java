@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.improve10X.crud.CrudApi;
+import com.improve10X.crud.CrudService;
 import com.improve10X.crud.R;
 
 import java.util.ArrayList;
@@ -67,8 +69,8 @@ public class SeriesItemsActivity extends AppCompatActivity {
         });
     }
     private void fetchSeriesItems() {
-         SeriesItemsApi seriesItemsApi = new SeriesItemsApi();
-         SeriesItemsService seriesItemsService = seriesItemsApi.createSeriesItemService();
+        SeriesItemsApi seriesItemsApi = new SeriesItemsApi();
+        SeriesItemsService seriesItemsService = seriesItemsApi.createSeriesItemService();
          Call<List<SeriesItem>> call = seriesItemsService.fetchSeriesItem();
          call.enqueue(new Callback<List<SeriesItem>>() {
              @Override

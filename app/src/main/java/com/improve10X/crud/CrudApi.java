@@ -1,18 +1,20 @@
-package com.improve10X.crud.series;
+package com.improve10X.crud;
 
 import com.improve10X.crud.Constants;
+import com.improve10X.crud.CrudService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SeriesItemsApi {
+public class CrudApi {
 
-    public SeriesItemsService createSeriesItemService(){
+    public CrudService createCrudService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        SeriesItemsService seriesItemsService = retrofit.create(SeriesItemsService.class);
-        return seriesItemsService;
+
+        CrudService crudService = retrofit.create(CrudService.class);
+        return crudService;
     }
 }

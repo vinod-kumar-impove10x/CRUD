@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.improve10X.crud.R;
 
 public class MessageViewHolder extends RecyclerView.ViewHolder {
-    public TextView nameText;
-    public TextView numberText;
-    public TextView messageTextTxt;
-    public ImageButton deleteBtn;
+     TextView nameText;
+     TextView numberText;
+     TextView messageTextTxt;
+     ImageButton deleteBtn;
 
     public MessageViewHolder(@NonNull View itemView) {
         super(itemView);
