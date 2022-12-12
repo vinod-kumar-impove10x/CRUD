@@ -38,7 +38,9 @@ public class MessagesActivity extends BaseActivity {
         log("onCreate");
         handleAdd();
         setupData();
+        setupAdapter();
         setupMessagesRv();
+
     }
 
     private void setupApiService() {
@@ -89,13 +91,17 @@ public class MessagesActivity extends BaseActivity {
     private void setupMessagesRv() {
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
+        messagesRv.setAdapter(messagesAdapter);
+
+    }
+
+    private void setupAdapter() {
         messagesAdapter = new MessagesAdapter();
         messagesAdapter.setData(messages);
-        messagesRv.setAdapter(messagesAdapter);
         messagesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onItemClicked(Message message) {
-               showToast("onItemClicked");
+                showToast("onItemClicked");
             }
 
             @Override
@@ -107,8 +113,7 @@ public class MessagesActivity extends BaseActivity {
 
             @Override
             public void onItemEdit(Message message) {
-               showToast("onItemClicked");
-
+                showToast("onItemClicked");
             }
         });
     }

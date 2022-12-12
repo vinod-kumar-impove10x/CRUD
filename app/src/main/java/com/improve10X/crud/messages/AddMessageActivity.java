@@ -18,14 +18,19 @@ import retrofit2.Response;
 public class AddMessageActivity extends AppCompatActivity {
 
     private CrudService crudService;
+    private Button addBtn;
+    private EditText nameTxt;
+    private EditText phoneNumberTxt;
+    private EditText messageTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_message);
         getSupportActionBar().setTitle("Add Message");
-        setupApiService();
+        setupViews();
         handleAdd();
+        setupApiService();
     }
 
     private void showToast(String message) {
@@ -38,26 +43,19 @@ public class AddMessageActivity extends AppCompatActivity {
     }
 
     private void handleAdd() {
-        Button addBtn = findViewById(R.id.add_btn);
         addBtn.setOnClickListener(view -> {
-            EditText nameTextTxt = findViewById(R.id.name_txt);
-            String nameText = nameTextTxt.getText().toString();
-            EditText phoneTextTxt = findViewById(R.id.phone_txt);
-            String phoneText = phoneTextTxt.getText().toString();
-            EditText messageTextTxt = findViewById(R.id.message_txt);
-            String messageText = messageTextTxt.getText().toString();
-            createMessage(nameText,phoneText,messageText);
+            // Get data from edit text components. name, phoneNumber, messageText.
+            String nameText = nameTxt.getText().toString();
+            String phoneText = phoneNumberTxt.getText().toString();
+            String messageText = messageTxt.getText().toString();
+            //create message object using name, phoneNumber, messageTxt.
+            Message message = createMessage(nameText,phoneText,messageText);
+            //save message in server
+            saveMessage(message);
         });
     }
 
-    private void createMessage(String nameText, String phoneText, String messageText) {
-        Message message = new Message();
-        message.name = nameText;
-        message.number = phoneText;
-        message.messageText = messageText;
-
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
+    private void saveMessage(Message message) {
         Call<Message> call = crudService.createMessage(message);
         call.enqueue(new Callback<Message>() {
             @Override
@@ -68,9 +66,30 @@ public class AddMessageActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Message> call, Throwable t) {
-               showToast("Failed to get loaded");
+                showToast("Failed to get loaded");
 
             }
         });
+    }
+
+    private Message createMessage(String nameText, String phoneText, String messageText) {
+        Message message = new Message();
+        message.name = nameText;
+        message.number = phoneText;
+        message.messageText = messageText;
+
+
+        CrudApi crudApi = new CrudApi();
+        CrudService crudService = crudApi.createCrudService();
+
+        return message;
+
+    }
+
+    private void setupViews() {
+        addBtn = findViewById(R.id.add_btn);
+        nameTxt = findViewById(R.id.name_txt);
+        phoneNumberTxt = findViewById(R.id.phone_txt);
+        messageTxt = findViewById(R.id.message_txt);
     }
 }
