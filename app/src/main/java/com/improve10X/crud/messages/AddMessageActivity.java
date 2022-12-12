@@ -17,12 +17,24 @@ import retrofit2.Response;
 
 public class AddMessageActivity extends AppCompatActivity {
 
+    private CrudService crudService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_message);
         getSupportActionBar().setTitle("Add Message");
+        setupApiService();
         handleAdd();
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void setupApiService() {
+        CrudApi crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
     }
 
     private void handleAdd() {
@@ -50,13 +62,13 @@ public class AddMessageActivity extends AppCompatActivity {
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
-                Toast.makeText(AddMessageActivity.this, "SuccessFully loaded", Toast.LENGTH_SHORT).show();
+                showToast("SuccessFully loaded");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Message> call, Throwable t) {
-                Toast.makeText(AddMessageActivity.this, "Failed to get loaded", Toast.LENGTH_SHORT).show();
+               showToast("Failed to get loaded");
 
             }
         });
