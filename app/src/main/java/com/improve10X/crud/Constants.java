@@ -6,6 +6,7 @@ public class Constants {
     public static final String KEY_TEMPLATE = "template";
     public static final String KEY_series = "series";
 
+
     public static final String MESSAGE_END_POINT = "vinodMessageHistory";
     public static final String TEMPLATE_END_POINT = "vinodTemplates";
     public static final String SERIES_END_POINT = "vinodSeries";
