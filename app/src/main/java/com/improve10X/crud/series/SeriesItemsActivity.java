@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.improve10X.crud.Constants;
 import com.improve10X.crud.CrudApi;
 import com.improve10X.crud.CrudService;
 import com.improve10X.crud.R;
 import com.improve10X.crud.base.BaseActivity;
+import com.improve10X.crud.messages.AddMessageActivity;
+import com.improve10X.crud.messages.MessagesActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +50,9 @@ public class SeriesItemsActivity extends BaseActivity {
         seriesItemsAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onItemClicked(SeriesItem seriesItem) {
-                showToast("onItemClicked");
+                Intent intent = new Intent(SeriesItemsActivity.this, AddSeriesItemActivity.class);
+                intent.putExtra(Constants.KEY_SERIES, seriesItem);
+                startActivity(intent);
             }
 
             @Override
