@@ -16,7 +16,7 @@
         android:theme="@style/Theme.CRUD"
         tools:targetApi="31">
         <activity
-            android:name=".AddEditMessageActivity"
+            android:name=".templates.AddTemplateActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -27,9 +27,6 @@
             android:exported="false" />
         <activity
             android:name=".series.SeriesItemsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".templates.AddTemplateActivity"
             android:exported="false" />
         <activity
             android:name=".templates.TemplatesActivity"

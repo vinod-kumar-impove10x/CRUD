@@ -60,6 +60,7 @@ public class MessagesActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+
                 showToast("Failed to delete");
             }
         });
@@ -122,7 +123,8 @@ public class MessagesActivity extends BaseActivity {
     }
 
     private void setupData() {
-            messages = new ArrayList<>();
+
+        messages = new ArrayList<>();
     }
 
     private void handleAdd() {

@@ -26,5 +26,14 @@ public interface CrudService {
 
     @PUT(Constants.MESSAGE_END_POINT + "/{id}")
     Call<Void> updateMessage(@Path("id") String id, @Body Message message);
+
+    @GET(Constants.TEMPLATE_END_POINT)
+    Call<List<Template>> fetchTemplates();
+
+    @POST(Constants.TEMPLATE_END_POINT)
+    Call<Template> createTemplate(@Body Template template);
+
+    @DELETE(Constants.TEMPLATE_END_POINT + "/{id}")
+    Call<Void> deleteTemplate(@Path("id") String id);
 }
 

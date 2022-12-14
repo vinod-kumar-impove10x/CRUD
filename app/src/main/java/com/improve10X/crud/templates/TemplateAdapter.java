@@ -15,14 +15,13 @@ import java.util.List;
 public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
    OnItemActionListener onItemActionListener;
 
-
-    public void setOnItemActionListener(OnItemActionListener listener) {
+   public void setOnItemActionListener(OnItemActionListener listener) {
         onItemActionListener = listener;
     }
 
-    public List<Template> templates;
+   private List<Template> templates;
 
-    public void setData(List<Template> templatesList) {
+    void setData(List<Template> templatesList) {
         templates = templatesList;
         notifyDataSetChanged();
     }

@@ -12,7 +12,7 @@ import com.improve10X.crud.R;
 public class TemplateViewHolder extends RecyclerView.ViewHolder {
 
      TextView messageTextTxt;
-    public ImageButton deleteBtn;
+     ImageButton deleteBtn;
 
     public TemplateViewHolder(@NonNull View itemView) {
         super(itemView);
