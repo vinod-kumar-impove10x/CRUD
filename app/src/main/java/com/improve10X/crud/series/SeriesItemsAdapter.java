@@ -19,9 +19,9 @@ public class SeriesItemsAdapter extends RecyclerView.Adapter<SeriesItemViewHolde
         onItemActionListener = listener;
     }
 
-    public List<SeriesItem> seriesList;
+    private List<SeriesItem> seriesList;
 
-    public void setData(List<SeriesItem>seriesItems) {
+    void setData(List<SeriesItem>seriesItems) {
         seriesList = seriesItems;
         notifyDataSetChanged();
     }
@@ -48,6 +48,7 @@ public class SeriesItemsAdapter extends RecyclerView.Adapter<SeriesItemViewHolde
 
     @Override
     public int getItemCount() {
+
         return seriesList.size();
     }
 }

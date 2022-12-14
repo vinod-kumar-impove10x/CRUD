@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.improve10X.crud.CrudApi;
 import com.improve10X.crud.CrudService;
 import com.improve10X.crud.R;
+import com.improve10X.crud.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +21,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SeriesItemsActivity extends AppCompatActivity {
-    public ArrayList<SeriesItem> seriesList;
-    public RecyclerView seriesItemsRv;
-    public SeriesItemsAdapter seriesItemsAdapter;
+public class SeriesItemsActivity extends BaseActivity {
+    private CrudService crudService;
+    private ArrayList<SeriesItem> seriesList;
+    private RecyclerView seriesItemsRv;
+    private SeriesItemsAdapter seriesItemsAdapter;
 
 
     @Override
@@ -31,31 +33,60 @@ public class SeriesItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_series_item);
         getSupportActionBar().setTitle("Series");
+        setupApiService();
+        log("onCreate");
         handleAdd();
         setupData();
+        setupAdapter();
         setupSeriesItemsRv();
+    }
+
+    private void setupAdapter() {
+        seriesItemsAdapter = new SeriesItemsAdapter();
+        seriesItemsAdapter.setData(seriesList);
+        seriesItemsAdapter.setOnItemActionListener(new OnItemActionListener() {
+            @Override
+            public void onItemClicked(SeriesItem seriesItem) {
+                showToast("onItemClicked");
+            }
+
+            @Override
+            public void onItemDelete(SeriesItem seriesItem) {
+                showToast("onItemDelete");
+                deleteSeriesItem(seriesItem);
+            }
+
+            @Override
+            public void onItemEdit(SeriesItem seriesItem) {
+               showToast("onItemEdit");
+            }
+        });
+    }
+
+    private void setupApiService() {
+        CrudApi crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        log("onCreate");
         fetchSeriesItems();
     }
 
     public void deleteSeriesItem(SeriesItem seriesItem) {
-        SeriesItemsApi seriesItemsApi = new SeriesItemsApi();
-        SeriesItemsService seriesItemsService = seriesItemsApi.createSeriesItemService();
-        Call<Void> call = seriesItemsService.deleteSeriesItem(seriesItem.id);
+        Call<Void> call = crudService.deleteSeriesItem(seriesItem.id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(SeriesItemsActivity.this, "SuccessFully done", Toast.LENGTH_SHORT).show();
+                showToast("SuccessFully done");
                 fetchSeriesItems();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(SeriesItemsActivity.this, "Failed to get load", Toast.LENGTH_SHORT).show();
+                showToast("Failed to get load");
 
             }
         });
@@ -69,9 +100,7 @@ public class SeriesItemsActivity extends AppCompatActivity {
         });
     }
     private void fetchSeriesItems() {
-        SeriesItemsApi seriesItemsApi = new SeriesItemsApi();
-        SeriesItemsService seriesItemsService = seriesItemsApi.createSeriesItemService();
-         Call<List<SeriesItem>> call = seriesItemsService.fetchSeriesItem();
+         Call<List<SeriesItem>> call = crudService.fetchSeriesItem();
          call.enqueue(new Callback<List<SeriesItem>>() {
              @Override
              public void onResponse(Call<List<SeriesItem>> call, Response<List<SeriesItem>> response) {
@@ -89,26 +118,8 @@ public class SeriesItemsActivity extends AppCompatActivity {
     private void setupSeriesItemsRv() {
         seriesItemsRv = findViewById(R.id.series_rv);
         seriesItemsRv.setLayoutManager(new LinearLayoutManager(this));
-        seriesItemsAdapter = new SeriesItemsAdapter();
         seriesItemsRv.setAdapter(seriesItemsAdapter);
-        seriesItemsAdapter.setData(seriesList);
-        seriesItemsAdapter.setOnItemActionListener(new OnItemActionListener() {
-            @Override
-            public void onItemClicked(SeriesItem seriesItem) {
-                Toast.makeText(SeriesItemsActivity.this, "onItemClicked", Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onItemDelete(SeriesItem seriesItem) {
-                Toast.makeText(SeriesItemsActivity.this, "onItemDelete", Toast.LENGTH_SHORT).show();
-                deleteSeriesItem(seriesItem);
-            }
-
-            @Override
-            public void onItemEdit(SeriesItem seriesItem) {
-                Toast.makeText(SeriesItemsActivity.this, "onItemEdit", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void setupData() {

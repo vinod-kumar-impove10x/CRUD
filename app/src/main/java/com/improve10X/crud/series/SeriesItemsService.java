@@ -12,13 +12,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface SeriesItemsService {
-    @GET(Constants.SERIES_END_POINT)
-    Call<List<SeriesItem>> fetchSeriesItem();
 
-    @POST(Constants.SERIES_END_POINT)
-    Call<SeriesItem> createSeriesItem(@Body SeriesItem seriesItem);
-
-    @DELETE(Constants.SERIES_END_POINT + "/{id}")
-    Call<Void>deleteSeriesItem(@Path("id")String id);
 
 }

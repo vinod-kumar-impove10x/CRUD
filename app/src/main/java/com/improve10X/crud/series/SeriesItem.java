@@ -2,7 +2,9 @@ package com.improve10X.crud.series;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SeriesItem {
+import java.io.Serializable;
+
+public class SeriesItem implements Serializable {
     @SerializedName("_id")
     public String id;
     public String seriesId;

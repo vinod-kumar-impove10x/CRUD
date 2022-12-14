@@ -1,61 +1,80 @@
 package com.improve10X.crud.series;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.improve10X.crud.CrudApi;
+import com.improve10X.crud.CrudService;
 import com.improve10X.crud.R;
+import com.improve10X.crud.base.BaseActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddSeriesItemActivity extends AppCompatActivity {
+public class AddSeriesItemActivity extends BaseActivity {
+
+    private CrudService crudService;
+    private EditText seriesIdTxt;
+    private EditText seriesNameTxt;
+    private EditText seriesImgUrl;
+    private Button addBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_series_item);
         getSupportActionBar().setTitle("Add Series");
+        setupView();
+        setupApiService();
         handleAdd();
     }
 
+    private void setupApiService() {
+        CrudApi crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
+    }
+
+    private void setupView() {
+        addBtn = findViewById(R.id.add_btn);
+        seriesIdTxt = findViewById(R.id.series_id_txt);
+        seriesNameTxt = findViewById(R.id.series_name_txt);
+        seriesImgUrl = findViewById(R.id.series_imgurl_txt);
+    }
+
     private void handleAdd() {
-        Button addBtn = findViewById(R.id.add_btn);
         addBtn.setOnClickListener(view -> {
-            EditText seriesIdTxt = findViewById(R.id.series_id_txt);
             String id = seriesIdTxt.getText().toString();
-            EditText seriesNameTxt = findViewById(R.id.series_name_txt);
             String name = seriesNameTxt.getText().toString();
-            EditText seriesImgUrl = findViewById(R.id.series_imgurl_txt);
             String imgUrl = seriesImgUrl.getText().toString();
-            createSeriesItem(id,name,imgUrl);
+            SeriesItem seriesItem = createSeriesItem(id, name, imgUrl);
+            saveSeriesItem(seriesItem);
         });
     }
 
-    private void createSeriesItem(String id, String name, String imgUrl) {
-        SeriesItem series = new SeriesItem();
-        series.seriesId = id;
-        series.title = name;
-        series.imageUrl = imgUrl;
-
-        SeriesItemsApi seriesItemsApi = new SeriesItemsApi();
-        SeriesItemsService seriesItemsService = seriesItemsApi.createSeriesItemService();
-        Call<SeriesItem> call = seriesItemsService.createSeriesItem(series);
+    private void saveSeriesItem(SeriesItem seriesItem) {
+        Call<SeriesItem> call = crudService.createSeriesItem(seriesItem);
         call.enqueue(new Callback<SeriesItem>() {
             @Override
             public void onResponse(Call<SeriesItem> call, Response<SeriesItem> response) {
-                Toast.makeText(AddSeriesItemActivity.this, "Successfully loaded", Toast.LENGTH_SHORT).show();
+                showToast("Successfully loaded");
                 finish();
             }
 
             @Override
             public void onFailure(Call<SeriesItem> call, Throwable t) {
-                Toast.makeText(AddSeriesItemActivity.this, "Failed to get loaded", Toast.LENGTH_SHORT).show();
+                showToast("Failed to get loaded");
             }
         });
+
+    }
+
+    private SeriesItem createSeriesItem(String id, String name, String imgUrl) {
+        SeriesItem series = new SeriesItem();
+        series.seriesId = id;
+        series.title = name;
+        series.imageUrl = imgUrl;
+        return series;
     }
 }
