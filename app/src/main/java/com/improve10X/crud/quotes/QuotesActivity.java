@@ -4,20 +4,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.improve10X.crud.CrudApi;
+import com.improve10X.crud.CrudService;
 import com.improve10X.crud.R;
 import com.improve10X.crud.base.BaseActivity;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class QuotesActivity extends BaseActivity {
 
-    private ArrayList<Quote> quotes;
+    private ArrayList<Quote> quotes = new ArrayList<>();
     private QuotesAdapter quotesAdapter;
     private RecyclerView quotesRv;
     private Button addBtn;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +34,44 @@ public class QuotesActivity extends BaseActivity {
         setContentView(R.layout.activity_quotes);
         getSupportActionBar().setTitle("Quotes");
         setupView();
-        setupData();
         setupQuotesAdapter();
         setupRecyclerView();
+        setupApiService();
+        handleAdd();
+    }
+
+    private void handleAdd() {
+        addBtn.setOnClickListener( view -> {
+            Intent intent = new Intent(this,AddEditCodeActivity.class);
+            startActivity(intent);
+        } );
+    }
+
+    private void setupApiService() {
+        CrudApi api = new CrudApi();
+        crudService = api.createCrudService();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchQuotes();
+    }
+
+    private void fetchQuotes() {
+        Call<List<Quote>> call = crudService.fetchQuotes();
+        call.enqueue(new Callback<List<Quote>>() {
+            @Override
+            public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
+                List<Quote> quotes = response.body();
+                quotesAdapter.setData(quotes);
+            }
+
+            @Override
+            public void onFailure(Call<List<Quote>> call, Throwable t) {
+            showToast("failed to fetch quotes");
+            }
+        });
     }
 
     private void setupRecyclerView() {
@@ -43,25 +87,5 @@ public class QuotesActivity extends BaseActivity {
     private void setupView() {
         quotesRv = findViewById(R.id.quotes_rv);
         addBtn = findViewById(R.id.add_btn);
-    }
-
-    private void setupData() {
-        quotes = new ArrayList<>();
-
-        Quote quote1 = new Quote();
-        quote1.id = "6397f97daaf0eb03e8f948d3";
-        quote1.quoteText = "Your FUTURE is created by\n what you do TODAY";
-        quote1.category = "career";
-        quote1.authorName = "vinod";
-        quote1.imageUrl = "https://www.kochiesbusinessbuilders.com.au/wp-content/uploads/2022/02/motivational-quote.jpg";
-        quotes.add(quote1);
-
-        Quote quote2 = new Quote();
-        quote2.id = "6397f97daaf0eb03e8f948d3";
-        quote2.quoteText = "Your FUTURE is created by\n what you do TODAY";
-        quote2.category = "career";
-        quote2.authorName = "";
-        quote2.imageUrl = "https://www.kochiesbusinessbuilders.com.au/wp-content/uploads/2022/02/motivational-quote.jpg";
-        quotes.add(quote2);
     }
 }
