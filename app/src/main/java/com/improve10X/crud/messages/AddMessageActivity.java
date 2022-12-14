@@ -45,7 +45,7 @@ public class AddMessageActivity extends BaseActivity {
             handleEditBtn();
         }else {
             //Add mode
-            getSupportActionBar().setTitle("Add Quote");
+            getSupportActionBar().setTitle("Add Message");
             handleMessageAdd();
             handleAdd();
         }

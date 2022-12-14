@@ -9,11 +9,14 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.improve10X.crud.Constants;
 import com.improve10X.crud.CrudApi;
 import com.improve10X.crud.CrudService;
 import com.improve10X.crud.R;
 import com.improve10X.crud.base.BaseActivity;
+import com.improve10X.crud.messages.AddMessageActivity;
 import com.improve10X.crud.messages.Message;
+import com.improve10X.crud.messages.MessagesActivity;
 import com.improve10X.crud.messages.MessagesApi;
 import com.improve10X.crud.messages.MessagesService;
 
@@ -49,7 +52,9 @@ public class TemplatesActivity extends BaseActivity {
         templateAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onItemClicked(Template template) {
-                showToast("Successfully on clicked");
+                Intent intent = new Intent(TemplatesActivity.this, AddTemplateActivity.class);
+                intent.putExtra(Constants.KEY_TEMPLATE, template);
+                startActivity(intent);
             }
 
             @Override
