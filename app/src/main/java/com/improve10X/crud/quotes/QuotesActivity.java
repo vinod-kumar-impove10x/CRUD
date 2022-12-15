@@ -90,7 +90,23 @@ public class QuotesActivity extends BaseActivity {
 
             @Override
             public void onItemDelete(Quote quote) {
-                 showToast("Item Deleted");
+                 deleteQuote(quote);
+            }
+
+            private void deleteQuote(Quote quote) {
+                Call<Void> call = crudService.deleteQuote(quote.id);
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        showToast("Successfully deleted the quote");
+                        fetchQuotes();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                         showToast("Failed to delete the quote ");
+                    }
+                });
             }
         });
     }
