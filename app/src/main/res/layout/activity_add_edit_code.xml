@@ -7,7 +7,7 @@
     android:layout_weight="1"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".quotes.AddEditCodeActivity">
+    tools:context=".quotes.BaseAddEditQuoteActivity">
 
     <TextView
         android:id="@+id/textView13"
@@ -81,13 +81,22 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/edit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00ACC1"
+            android:text="Edit"
+            android:textAllCaps="false"
+            android:textSize="20sp" />
+
+        <Button
             android:id="@+id/add_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#00ACC1"
             android:text="Add"
             android:textAllCaps="false"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
 </LinearLayout>

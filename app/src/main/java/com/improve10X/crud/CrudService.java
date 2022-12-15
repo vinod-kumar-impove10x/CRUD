@@ -60,5 +60,8 @@ public interface CrudService {
 
     @DELETE(Constants.QUOTES_END_POINT + "/{id}")
     Call<Void>deleteQuote(@Path("id")String id);
+
+    @PUT(Constants.QUOTES_END_POINT + "/{id}")
+    Call<Void> updateQuote(@Path("id") String id,@Body Quote quote);
 }
 

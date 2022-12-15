@@ -1,6 +1,5 @@
 package com.improve10X.crud.quotes;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.improve10X.crud.Constants;
 import com.improve10X.crud.CrudApi;
 import com.improve10X.crud.CrudService;
 import com.improve10X.crud.R;
@@ -42,7 +42,7 @@ public class QuotesActivity extends BaseActivity {
 
     private void handleAdd() {
         addBtn.setOnClickListener( view -> {
-            Intent intent = new Intent(this,AddEditCodeActivity.class);
+            Intent intent = new Intent(this, AddQuoteActivity.class);
             startActivity(intent);
         } );
     }
@@ -85,7 +85,9 @@ public class QuotesActivity extends BaseActivity {
         quotesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onItemClick(Quote quote) {
-                showToast("Item clicked");
+                Intent intent = new Intent(QuotesActivity.this, EditQuoteActivity.class);
+                intent.putExtra(Constants.KEY_QUOTE,quote);
+                startActivity(intent);
             }
 
             @Override
