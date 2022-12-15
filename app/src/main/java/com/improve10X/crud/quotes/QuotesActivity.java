@@ -82,6 +82,17 @@ public class QuotesActivity extends BaseActivity {
     private void setupQuotesAdapter() {
         quotesAdapter = new QuotesAdapter();
         quotesAdapter.setData(quotes);
+        quotesAdapter.setOnItemActionListener(new OnItemActionListener() {
+            @Override
+            public void onItemClick(Quote quote) {
+                showToast("Item clicked");
+            }
+
+            @Override
+            public void onItemDelete(Quote quote) {
+                 showToast("Item Deleted");
+            }
+        });
     }
 
     private void setupView() {

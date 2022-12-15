@@ -15,6 +15,12 @@ import java.util.List;
 public class QuotesAdapter extends RecyclerView.Adapter<QuoteViewHolder> {
 
     private List<Quote> quotes;
+    private OnItemActionListener onItemActionListener;
+
+    void setOnItemActionListener(OnItemActionListener listener) {
+
+        onItemActionListener = listener;
+    }
 
     void setData(List<Quote> quoteList) {
         quotes = quoteList;
@@ -34,6 +40,12 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuoteViewHolder> {
          Picasso.get().load(quote.imageUrl).into(holder.quoteImg);
          holder.quoteTextTxt.setText(quote.quoteText);
          holder.authorNameTxt.setText(quote.authorName);
+         holder.deleteBtn.setOnClickListener(v -> {
+             onItemActionListener.onItemDelete(quote);
+         });
+         holder.itemView.setOnClickListener(view -> {
+             onItemActionListener.onItemClick(quote);
+         });
     }
 
     @Override

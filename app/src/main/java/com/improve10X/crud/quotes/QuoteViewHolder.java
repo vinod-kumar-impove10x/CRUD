@@ -1,6 +1,7 @@
 package com.improve10X.crud.quotes;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ public class QuoteViewHolder extends RecyclerView.ViewHolder {
      ImageView quoteImg;
      TextView quoteTextTxt;
      TextView authorNameTxt;
+     ImageButton deleteBtn;
 
 
     public QuoteViewHolder(@NonNull View itemView) {
@@ -21,5 +23,6 @@ public class QuoteViewHolder extends RecyclerView.ViewHolder {
         quoteImg = itemView.findViewById(R.id.quote_img);
         quoteTextTxt = itemView.findViewById(R.id.quote_text_txt);
         authorNameTxt = itemView.findViewById(R.id.author_name_txt);
+        deleteBtn = itemView.findViewById(R.id.delete_btn);
     }
 }

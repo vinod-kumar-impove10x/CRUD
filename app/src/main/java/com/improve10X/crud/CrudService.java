@@ -54,5 +54,8 @@ public interface CrudService {
 
     @GET(Constants.QUOTES_END_POINT)
     Call<List<Quote>> fetchQuotes();
+
+    @POST(Constants.QUOTES_END_POINT)
+    Call<Quote> createQuote(@Body Quote quote);
 }
 
