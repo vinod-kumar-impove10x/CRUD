@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 
 import com.improve10X.crud.messages.MessagesActivity;
+import com.improve10X.crud.movies.MoviesActivity;
 import com.improve10X.crud.quotes.QuotesActivity;
 import com.improve10X.crud.series.SeriesItemsActivity;
 import com.improve10X.crud.templates.TemplatesActivity;
@@ -22,6 +23,7 @@ public class DashboardActivity extends AppCompatActivity {
         handleTemplatesImageButton();
         handleSeriesImageButton();
         handleQuotesButton();
+        handleMoviesImageButton();
 
     }
 
@@ -53,6 +55,14 @@ public class DashboardActivity extends AppCompatActivity {
         ImageButton seriesImageButton = findViewById(R.id.series_imgbtn);
         seriesImageButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, SeriesItemsActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void handleMoviesImageButton() {
+        ImageButton moviesImageButton = findViewById(R.id.movies_imgbtn);
+        moviesImageButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MoviesActivity.class);
             startActivity(intent);
         });
     }
