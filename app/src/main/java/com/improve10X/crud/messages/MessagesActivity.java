@@ -1,14 +1,11 @@
 package com.improve10X.crud.messages;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.improve10X.crud.Constants;
 import com.improve10X.crud.CrudApi;
@@ -103,7 +100,7 @@ public class MessagesActivity extends BaseActivity {
         messagesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onItemClicked(Message message) {
-                Intent intent = new Intent(MessagesActivity.this,AddMessageActivity.class);
+                Intent intent = new Intent(MessagesActivity.this,EditMessageActivity.class);
                 intent.putExtra(Constants.KEY_MESSAGE, message);
                 startActivity(intent);
             }

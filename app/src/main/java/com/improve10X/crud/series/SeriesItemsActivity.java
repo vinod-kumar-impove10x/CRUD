@@ -1,21 +1,17 @@
 package com.improve10X.crud.series;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.improve10X.crud.Constants;
 import com.improve10X.crud.CrudApi;
 import com.improve10X.crud.CrudService;
 import com.improve10X.crud.R;
 import com.improve10X.crud.base.BaseActivity;
-import com.improve10X.crud.messages.AddMessageActivity;
-import com.improve10X.crud.messages.MessagesActivity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -87,7 +87,8 @@
             android:backgroundTint="#00ACC1"
             android:text="Edit"
             android:textAllCaps="false"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/add_btn"
@@ -96,7 +97,8 @@
             android:backgroundTint="#00ACC1"
             android:text="Add"
             android:textAllCaps="false"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="gone" />
     </LinearLayout>
 
 </LinearLayout>
