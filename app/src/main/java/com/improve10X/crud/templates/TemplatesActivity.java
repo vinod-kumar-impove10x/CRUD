@@ -45,7 +45,7 @@ public class TemplatesActivity extends BaseActivity {
         templateAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onItemClicked(Template template) {
-                Intent intent = new Intent(TemplatesActivity.this, AddTemplateActivity.class);
+                Intent intent = new Intent(TemplatesActivity.this, EditTemplateActivity.class);
                 intent.putExtra(Constants.KEY_TEMPLATE, template);
                 startActivity(intent);
             }
