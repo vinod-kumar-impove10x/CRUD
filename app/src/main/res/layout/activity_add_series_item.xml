@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".series.AddSeriesItemActivity">
+    tools:context=".series.BaseAddSeriesItemActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,7 +66,8 @@
         android:backgroundTint="#00ACC1"
         android:text="Edit"
         android:textAllCaps="false"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/add_btn"
@@ -75,5 +76,6 @@
         android:backgroundTint="#00ACC1"
         android:text="Add"
         android:textAllCaps="false"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:visibility="gone" />
 </LinearLayout>

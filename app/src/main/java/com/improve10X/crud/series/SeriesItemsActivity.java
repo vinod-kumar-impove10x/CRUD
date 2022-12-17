@@ -46,7 +46,7 @@ public class SeriesItemsActivity extends BaseActivity {
         seriesItemsAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onItemClicked(SeriesItem seriesItem) {
-                Intent intent = new Intent(SeriesItemsActivity.this, AddSeriesItemActivity.class);
+                Intent intent = new Intent(SeriesItemsActivity.this, EditSeriesItemActivity.class);
                 intent.putExtra(Constants.KEY_SERIES, seriesItem);
                 startActivity(intent);
             }
@@ -96,7 +96,7 @@ public class SeriesItemsActivity extends BaseActivity {
     private void handleAdd() {
         Button addBtn = findViewById(R.id.add_btn);
         addBtn.setOnClickListener(view -> {
-            Intent addSeriesIntent = new Intent(this,AddSeriesItemActivity.class);
+            Intent addSeriesIntent = new Intent(this, AddSeriesItemActivity.class);
             startActivity(addSeriesIntent);
         });
     }
