@@ -1,8 +1,11 @@
 package com.improve10X.crud.movies;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.improve10X.crud.R;
 import com.improve10X.crud.base.BaseActivity;
@@ -10,17 +13,39 @@ import com.improve10X.crud.base.BaseActivity;
 import java.util.ArrayList;
 
 public class MoviesActivity extends BaseActivity {
+
     private ArrayList<Movie> movies;
+    private MoviesAdapter moviesAdapter;
+    private RecyclerView moviesRv;
+    private Button addBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
         getSupportActionBar().setTitle("Movies");
-        setupView();
+        setupViews();
+        setupData();
+        setupMoviesAdapter();
+        setupRecyclerView();
     }
 
-    private void setupView() {
+    private void setupRecyclerView() {
+        moviesRv.setLayoutManager(new LinearLayoutManager(this));
+        moviesRv.setAdapter(moviesAdapter);
+    }
+
+    private void setupMoviesAdapter() {
+        moviesAdapter = new MoviesAdapter();
+        moviesAdapter.setData(movies);
+    }
+
+    private void setupViews() {
+        moviesRv = findViewById(R.id.movies_rv);
+        addBtn = findViewById(R.id.add_btn);
+    }
+
+    private void setupData() {
         movies = new ArrayList<>();
 
         Movie movie1 = new Movie();
